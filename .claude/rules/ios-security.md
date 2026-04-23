@@ -6,16 +6,38 @@ paths:
 
 ## Secret Management
 
-- **Keychain Services** 사용 -- 토큰, 비밀번호, 키 등 민감 데이터
+- **빌드 타임 시크릿**: `Secrets.xcconfig`에 저장. 이 파일은 `.gitignore`에 반드시 포함.
+- **런타임 시크릿**: **Keychain Services** 사용 -- 토큰, 비밀번호, 키 등 민감 데이터
 - `UserDefaults`에 민감 데이터 절대 저장 금지
-- 소스에 시크릿 하드코딩 금지 -- `.xcconfig` 또는 환경변수 사용
+- 소스 코드에 시크릿 하드코딩 절대 금지
+
+### Secrets.xcconfig 패턴
+
+```
+# Secrets.xcconfig (절대 커밋하지 않음 — .gitignore 필수)
+API_KEY = sk-xxxxxxxxxxxx
+FIREBASE_KEY = AIzaxxxxxxxxxx
+```
 
 ```swift
-let apiKey = ProcessInfo.processInfo.environment["API_KEY"]
-guard let apiKey, !apiKey.isEmpty else {
-    fatalError("API_KEY not configured")
-}
+// Info.plist에서 읽기
+let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String
 ```
+
+### 커밋 전 민감사항 검사 (필수)
+
+**git add/commit 전에 반드시 아래 항목을 확인한다:**
+
+1. `Secrets.xcconfig`이 staged 되어 있지 않은지
+2. 소스 코드에 API 키, 토큰, 비밀번호가 하드코딩되어 있지 않은지
+3. `.env`, `.xcconfig` (Secrets 관련), `credentials`, `*.p12`, `*.pem` 파일이 포함되지 않았는지
+
+```bash
+# 이 명령어로 민감 파일이 staged 되어 있는지 확인
+git diff --cached --name-only | grep -iE '(secret|credential|\.env|\.p12|\.pem|apikey)'
+```
+
+**위반 시 즉시 unstage하고 사용자에게 알린다.**
 
 ## Transport Security
 

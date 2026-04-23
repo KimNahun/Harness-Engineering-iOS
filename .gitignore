@@ -16,6 +16,13 @@ fastlane/test_output
 # macOS
 .DS_Store
 
+# Secrets (절대 커밋 금지)
+Secrets.xcconfig
+*.p12
+*.pem
+.env
+.env.*
+
 # Harness (자동 생성 파일)
 output/
 docs/

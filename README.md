@@ -202,7 +202,7 @@ claude
 ## 기반 기술
 
 - [Claude Code](https://claude.ai/code) — Anthropic의 AI 코딩 CLI
-- [Everything Claude Code](https://github.com/anthropics/everything-claude-code) — Claude Code 플러그인 프레임워크
+- [Everything Claude Code](https://github.com/affaan-m/everything-claude-code) — Claude Code 플러그인 프레임워크
 
 ## License
 
