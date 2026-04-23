@@ -186,15 +186,83 @@ claude
 
 ## 다른 프로젝트에 적용
 
-`PROJECT_CONTEXT.md`만 새로 쓰면 됩니다. 나머지(agents, rules, skills, commands, hooks)는 재사용됩니다.
+**`PROJECT_CONTEXT.md` 이 파일 하나만 바꾸면 됩니다.** 나머지는 전부 공용입니다.
 
 ```bash
-# PROJECT_CONTEXT.md에서 바꿀 것:
-# - 앱 이름, 번들 ID
-# - 프로젝트 경로 (PROJECT_ROOT, TARGET_DIR)
-# - 빌드/테스트 명령어
-# - 디자인 시스템 (있으면)
-# - 추가 기능 요구사항
+cp PROJECT_CONTEXT.template.md PROJECT_CONTEXT.md
+# PROJECT_CONTEXT.md를 열고 프로젝트에 맞게 수정
+```
+
+### 공용 vs 프로젝트별
+
+```
+공용 (안 바꿈)                    프로젝트별 (이것만 바꿈)
+─────────────                   ──────────────────
+agents/planner.md               PROJECT_CONTEXT.md
+agents/generator.md
+agents/evaluator.md
+agents/ios-reviewer.md
+agents/evaluation_criteria.md
+.claude/rules/*
+.claude/commands/*
+skills/*
+scripts/hooks/*
+```
+
+### PROJECT_CONTEXT.md에서 바꿀 항목
+
+| 섹션 | 바꿀 내용 | 예시 |
+|------|-----------|------|
+| **앱 이름 / 번들 ID** | 프로젝트 기본 정보 | `MyRecipeApp`, `com.nahun.MyRecipeApp` |
+| **프로젝트 경로** | `PROJECT_ROOT`, `TARGET_DIR`, `HARNESS_ROOT` | `/Users/you/Desktop/MyRecipeApp` |
+| **빌드 / 테스트 명령어** | `BUILD_COMMAND`, `TEST_COMMAND` | scheme, destination 변경 |
+| **Xcode 통합 방식** | `SYNC_METHOD` | `auto` (파일 복사만) 또는 `manual` |
+| **디자인 시스템** | 커스텀 SPM 패키지 (없으면 삭제) | `PersonalColorDesignSystem` |
+| **추가 기능 요구사항** | 프로젝트 고유 기능/제약 | "Core Data 사용", "AlarmKit 연동" |
+| **API 문서 수집** | NotebookLM/context7 질의 목록 (없으면 삭제) | 노트북 ID, 질문 |
+| **기존 코드 참고** | Generator가 참고할 기존 파일 경로 | `Services/AuthService.swift` |
+| **보존 파일** | 덮어쓰면 안 되는 파일 | `Utils/Logger.swift` |
+
+### 예시: 레시피 앱
+
+```markdown
+## 대상 프로젝트
+- 앱 이름: MyRecipeApp
+- 번들 ID: com.nahun.MyRecipeApp
+- 최소 타겟 iOS: 17.0
+
+## 프로젝트 경로
+PROJECT_ROOT="/Users/haesuyoun/Desktop/MyRecipeApp"
+TARGET_DIR="MyRecipeApp"
+HARNESS_ROOT="/Users/haesuyoun/Desktop/NahunPersonalFolder/harness"
+
+## 빌드 / 테스트 명령어
+BUILD_COMMAND="xcodebuild -project $PROJECT_ROOT/MyRecipeApp.xcodeproj \
+  -scheme MyRecipeApp \
+  -destination 'platform=iOS Simulator,name=iPhone 16' \
+  build 2>&1 | grep -E 'error:|BUILD (SUCCEEDED|FAILED)'"
+
+## 사용자 추가 요구사항
+#### 1. Core Data + CloudKit 동기화
+- 레시피 모델을 Core Data로 저장
+- CloudKit으로 디바이스 간 동기화
+```
+
+### 예시: 건강 대시보드 앱
+
+```markdown
+## 대상 프로젝트
+- 앱 이름: HealthDash
+- 번들 ID: com.nahun.HealthDash
+- 최소 타겟 iOS: 17.0
+
+## 사용자 추가 요구사항
+#### 1. HealthKit 데이터 읽기
+- 걸음 수, 심박수, 수면 데이터
+- HealthKit 권한 요청 흐름
+
+#### 2. Swift Charts로 시각화
+- 일/주/월 단위 차트
 ```
 
 ---
