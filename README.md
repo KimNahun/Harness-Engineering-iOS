@@ -4,7 +4,7 @@
 
 3-Agent 파이프라인(Planner → Generator → Evaluator)으로 Swift 6 + SwiftUI + MVVM 코드를 자동 생성하고, 평가 기준표로 품질을 강제합니다.
 
-어떤 iOS 프로젝트에도 `PROJECT_CONTEXT.md` 하나만 작성하면 적용할 수 있습니다.
+어떤 iOS 프로젝트에도 `PROJECT_CONTEXT.md`만 수정하면 적용할 수 있습니다.
 
 ---
 
@@ -26,7 +26,7 @@
 ```
 harness/
 ├── CLAUDE.md                           # 오케스트레이터 (파이프라인 전체 흐름)
-├── PROJECT_CONTEXT.template.md         # 프로젝트별 설정 템플릿
+├── PROJECT_CONTEXT.md                  # 프로젝트별 설정
 │
 ├── agents/                             # 서브에이전트
 │   ├── planner.md                      #   아키텍처 설계 (opus)
@@ -147,7 +147,6 @@ harness/
 
 ```bash
 cd harness
-cp PROJECT_CONTEXT.template.md PROJECT_CONTEXT.md
 # PROJECT_CONTEXT.md를 열고 앱 이름, 경로, 빌드 명령어 등 작성
 ```
 
@@ -187,11 +186,6 @@ claude
 ## 다른 프로젝트에 적용
 
 **`PROJECT_CONTEXT.md` 이 파일 하나만 바꾸면 됩니다.** 나머지는 전부 공용입니다.
-
-```bash
-cp PROJECT_CONTEXT.template.md PROJECT_CONTEXT.md
-# PROJECT_CONTEXT.md를 열고 프로젝트에 맞게 수정
-```
 
 ### 공용 vs 프로젝트별
 

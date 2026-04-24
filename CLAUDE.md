@@ -13,7 +13,7 @@
 
 | 파일 | 역할 | 없으면? |
 |------|------|---------|
-| `PROJECT_CONTEXT.md` | 프로젝트별 고정 요구사항 (앱 이름, 번들 ID, 디자인 시스템, 추가 기능) | `PROJECT_CONTEXT.template.md`를 복사하여 작성 |
+| `PROJECT_CONTEXT.md` | 프로젝트별 고정 요구사항 (앱 이름, 번들 ID, 디자인 시스템, 추가 기능) | 프로젝트에 맞게 수정하여 사용 |
 | `agents/*.md` | 서브에이전트 지시서 | 이미 포함됨 |
 | `agents/evaluation_criteria.md` | 공통 평가 기준 | 이미 포함됨 |
 

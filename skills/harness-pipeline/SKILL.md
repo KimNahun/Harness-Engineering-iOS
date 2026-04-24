@@ -21,7 +21,7 @@ origin: harness
 ## How It Works
 
 ### 사전 조건
-1. `PROJECT_CONTEXT.md`��� 존재해야 함 (없으면 template에서 복사)
+1. `PROJECT_CONTEXT.md`��� 존재해야 함 (없으면 프로젝트에 맞게 수정 필요)
 2. `agents/` 폴더에 planner.md, generator.md, evaluator.md 존재
 
 ### 파이프라인 흐름

@@ -13,7 +13,7 @@
 ```
 harness/
 ├── CLAUDE.md                           # 오케스트레이터 (Claude Code가 자동으로 읽음)
-├── PROJECT_CONTEXT.template.md         # 프로젝트별 설정 템플릿
+├── PROJECT_CONTEXT.md                  # 프로젝트별 설정
 ├── START.md                            # 이 파일
 │
 ├── agents/                             # 서브에이전트 지시서
@@ -62,11 +62,6 @@ harness/
 ## 새 프로젝트에 적용하는 방법
 
 ### 1단계: PROJECT_CONTEXT.md 작성
-
-```bash
-cd harness
-cp PROJECT_CONTEXT.template.md PROJECT_CONTEXT.md
-```
 
 `PROJECT_CONTEXT.md`를 열고 프로젝트에 맞게 수정:
 - 앱 이름, 번들 ID, 타겟 OS
