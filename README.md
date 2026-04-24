@@ -30,7 +30,7 @@ harness/
 │
 ├── agents/                             # 서브에이전트
 │   ├── planner.md                      #   아키텍처 설계 (opus)
-│   ├── generator.md                    #   Swift 코드 생성 (sonnet → opus)
+│   ├── generator.md                    #   Swift 코드 생성 (sonnet)
 │   ├── evaluator.md                    #   QA 검수 (opus)
 │   ├── ios-reviewer.md                 #   피드백 수정 (opus)
 │   └── evaluation_criteria.md          #   공통 평가 기준표
