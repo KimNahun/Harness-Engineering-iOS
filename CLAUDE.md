@@ -116,11 +116,11 @@ prompt: |
   output/ 폴더 아래에 파일 구조에 따라 Swift 파일들을 생성하라.
 ```
 
-**피드백 반영 시 (2회차 이상) -- `model: "opus"` 사용:**
+**피드백 반영 시 (2회차 이상) -- `model: "sonnet"` 사용:**
 
 ```
 description: "Generator R{N}: QA 피드백 반영"
-model: "opus"
+model: "sonnet"
 subagent_type: "general-purpose"
 prompt: |
   PROJECT_CONTEXT.md 파일을 반드시 먼저 읽어라. 이것이 프로젝트 고정 요구사항이다.
@@ -260,7 +260,7 @@ $BUILD_COMMAND
 | 단계 0 (문서 수집) | **haiku** | 질의 후 파일 저장, 추론 불필요 |
 | 단계 1 Planner | **opus** | 전체 아키텍처 설계. 구조를 잘못 잡으면 전체가 망함 |
 | 단계 2 Generator (최초) | **sonnet** | 일반 Swift 코딩. 비용 대비 성능 최적 |
-| 단계 2 Generator (피드백 반영) | **opus** | QA 피드백 + 전체 코드 맥락 동시 처리 |
+| 단계 2 Generator (피드백 반영) | **sonnet** | QA 피드백 반영 코딩. sonnet 4.6이면 충분 |
 | 단계 3 Evaluator | **opus** | 동시성/MVVM/보안 위반 탐지. 놓치면 안 됨 |
 
 ---
